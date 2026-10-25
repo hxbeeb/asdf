@@ -116,7 +116,7 @@ Vercel builds the React static site from `frontend/`, serves it from its CDN, an
 
 ### Live application
 
-**Deployment URL:** to be added after the Vercel deployment and release health check succeeds. Do not submit this repository until this line contains the verified `https://<project>.vercel.app` URL.
+**Deployment URL:** [https://asdf-gilt-sigma.vercel.app/](https://asdf-gilt-sigma.vercel.app/)
 
 ## AI assistance disclosure
 

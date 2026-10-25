@@ -88,8 +88,9 @@ If external Elexon access is unavailable, set `DEMO_MODE=true` for a clearly lab
 │   └── package-lock.json    Locked frontend dependency graph
 ├── Dockerfile               Production multi-stage frontend/backend image
 ├── docker-compose.yml       Local UI + API development services
-├── Procfile                 Heroku process definition
-├── heroku.yml               Heroku container build definition
+├── api/index.py             Vercel entrypoint for the FastAPI API
+├── requirements.txt         Root dependency entrypoint for Vercel Python builds
+├── vercel.json              Vercel static-site, API and route configuration
 ├── VIDEO_DEMO_GUIDE.md      Screen-only customer and technical demo script
 ├── .dockerignore            Docker build exclusions
 └── .gitignore               Local/generated-file exclusions
@@ -105,18 +106,17 @@ cd frontend && npm install && npm run build
 
 ## Deployment
 
-The repository is prepared for Heroku Container Registry (`Dockerfile`, `Procfile`, and `heroku.yml`):
+The repository is configured for Vercel. Import the public GitHub repository into Vercel, or deploy from the project root with:
 
 ```bash
-heroku container:push web --app <your-app-name>
-heroku container:release web --app <your-app-name>
+npx vercel --prod
 ```
 
-Set `CORS_ORIGINS` if separating the UI from the API. A live deployment requires the client's Heroku/Vercel account and app name, which are not available in this workspace. Do not enable `DEMO_MODE` in a client deployment.
+Vercel builds the React static site from `frontend/`, serves it from its CDN, and routes `/api/*` to the FastAPI entrypoint in `api/index.py`. Do not enable `DEMO_MODE` in a client deployment.
 
 ### Live application
 
-**Deployment URL:** to be added after the Heroku app is created and the release health check succeeds. Do not submit this repository until this line contains the verified `https://<anonymous-app-name>.herokuapp.com` URL.
+**Deployment URL:** to be added after the Vercel deployment and release health check succeeds. Do not submit this repository until this line contains the verified `https://<project>.vercel.app` URL.
 
 ## AI assistance disclosure
 
